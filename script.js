@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Define correct answers for scoring (in a real exam, this would come from a server)
     const correctAnswers = {
         '01': '3', // Answer for Question 1 is option 3: √(G ℏ/c³)
-        '02': '4', // Example answers for other questions
-        '03': '2',
+        '02': '3', // Answer for Question 2 is option 3: 2 : 3 (projectile motion question)
+        '03': '3', // Answer for Question 3 is option 3: 8 m/s (particle motion question)
         '04': '1',
         '05': '3',
         '06': '2',
@@ -118,6 +118,128 @@ document.addEventListener('DOMContentLoaded', function() {
         // For this demo, we'll just update the question text based on the subject
         const questionNumber = parseInt(qNum);
         let questionText = '';
+        let optionsHTML = '';
+        
+        // Special case for Question 02
+        if (qNum === '02') {
+            questionText = `Two projectiles A and B are thrown with initial velocities of 40 m/s and 60 m/s at angles 30° and 60° with the horizontal respectively. The ratio of their ranges respectively is (g = 10 m/s²)`;
+            
+            optionsHTML = `
+                <div class="option">
+                    <input type="radio" id="option1" name="answer" value="1">
+                    <label for="option1">(1) 1 : 1</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="option2" name="answer" value="2">
+                    <label for="option2">(2) 1 : 2</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="option3" name="answer" value="3">
+                    <label for="option3">(3) 2 : 3</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="option4" name="answer" value="4">
+                    <label for="option4">(4) 3 : 4</label>
+                </div>
+            `;
+            
+            document.querySelector('.question-content p').textContent = questionText;
+            document.querySelector('.options').innerHTML = optionsHTML;
+            return;
+        }
+        
+        // Special case for Question 03
+        if (qNum === '03') {
+            questionText = `A particle is moving in a straight line. The variation of position 'x' as a function of time 't' is given as x = (t³ - 6t² + 20t + 15) m. The velocity of the body when its acceleration becomes zero is:`;
+            
+            optionsHTML = `
+                <div class="option">
+                    <input type="radio" id="option1" name="answer" value="1">
+                    <label for="option1">(A) 6 m/s</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="option2" name="answer" value="2">
+                    <label for="option2">(B) 10 m/s</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="option3" name="answer" value="3">
+                    <label for="option3">(C) 8 m/s</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="option4" name="answer" value="4">
+                    <label for="option4">(D) 4 m/s</label>
+                </div>
+            `;
+            
+            document.querySelector('.question-content p').textContent = questionText;
+            document.querySelector('.options').innerHTML = optionsHTML;
+            return;
+        }
+        
+        // Special cases for integer-type questions (26-30)
+        if (questionNumber >= 26 && questionNumber <= 30) {
+            // Define integer-type questions
+            const integerQuestions = {
+                '26': {
+                    text: 'A ball is thrown vertically upward with an initial velocity of 19.6 m/s. If g = 9.8 m/s², calculate the maximum height reached by the ball in meters.',
+                    answer: '19.6'
+                },
+                '27': {
+                    text: 'A simple pendulum completes 40 oscillations in 60 seconds. What is the time period of the pendulum in seconds?',
+                    answer: '1.5'
+                },
+                '28': {
+                    text: 'A current of 2A flows through a resistor of 6 ohms for 5 minutes. Calculate the heat generated in joules.',
+                    answer: '3600'
+                },
+                '29': {
+                    text: 'A body of mass 2 kg is moving with a velocity of 10 m/s. If a force of 5 N acts on it in the direction of motion for 4 seconds, what is the final velocity in m/s?',
+                    answer: '20'
+                },
+                '30': {
+                    text: 'A lens has a focal length of 25 cm. Calculate its power in diopters.',
+                    answer: '4'
+                }
+            };
+            
+            // Get the specific question
+            const question = integerQuestions[qNum];
+            
+            // Update the question text
+            document.querySelector('.question-content p').textContent = question.text;
+            
+            // Create integer input field instead of multiple choice options
+            optionsHTML = `
+                <div class="integer-input-container">
+                    <label for="integer-answer">Enter your answer (integer or decimal):</label>
+                    <input type="number" id="integer-answer" step="0.1" class="integer-answer-input">
+                    <p class="integer-note">Note: For this question, enter a numerical value as your answer.</p>
+                </div>
+            `;
+            
+            document.querySelector('.options').innerHTML = optionsHTML;
+            
+            // Add event listener to the integer input
+            setTimeout(() => {
+                const integerInput = document.getElementById('integer-answer');
+                if (integerInput) {
+                    integerInput.addEventListener('input', function() {
+                        // Store the answer in the question data
+                        questionData[qNum].selectedOption = this.value;
+                        questionData[qNum].answered = this.value.trim() !== '';
+                        updateQuestionButtonUI(qNum);
+                        updateStatusCounts();
+                    });
+                    
+                    // Restore previous answer if exists
+                    if (questionData[qNum].selectedOption) {
+                        integerInput.value = questionData[qNum].selectedOption;
+                    }
+                }
+            }, 100);
+            
+            return;
+        }
         
         if (questionNumber >= 1 && questionNumber <= 30) {
             questionText = `This is a Physics question about `;
@@ -151,8 +273,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Only update the question text if it's not the first question (which has special content)
-        if (qNum !== '01') {
+        // Only update the question text if it's not one of the special questions
+        if (qNum !== '01' && qNum !== '02' && qNum !== '03' && 
+            !(parseInt(qNum) >= 26 && parseInt(qNum) <= 30)) {
             document.querySelector('.question-content p').textContent = questionText;
             
             // Update options for demonstration purposes
@@ -328,6 +451,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Helper functions
     function saveCurrentState(qNum) {
+        const questionNumber = parseInt(qNum);
+        
+        // Handle integer-type questions (26-30)
+        if (questionNumber >= 26 && questionNumber <= 30) {
+            const integerInput = document.getElementById('integer-answer');
+            if (integerInput) {
+                questionData[qNum].selectedOption = integerInput.value;
+                questionData[qNum].answered = integerInput.value.trim() !== '';
+            }
+            return;
+        }
+        
+        // For multiple choice questions
         const selectedOption = document.querySelector('.option input[type="radio"]:checked');
         
         if (selectedOption) {
@@ -339,6 +475,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function loadQuestionState(qNum) {
+        const questionNumber = parseInt(qNum);
+        
+        // Handle integer-type questions (26-30)
+        if (questionNumber >= 26 && questionNumber <= 30) {
+            // Wait a bit for the input field to be created
+            setTimeout(() => {
+                const integerInput = document.getElementById('integer-answer');
+                if (integerInput && questionData[qNum].selectedOption) {
+                    integerInput.value = questionData[qNum].selectedOption;
+                }
+            }, 100);
+            return;
+        }
+        
+        // For multiple choice questions
         // Clear all options first
         optionInputs.forEach(input => {
             input.checked = false;
@@ -538,8 +689,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function isCorrectAnswer(qNum, selectedOption) {
-        // In a real exam, this would check against correct answers from a server
-        // For this demo, we'll use our predefined correct answers
+        // Handle integer-type questions (26-30)
+        if (parseInt(qNum) >= 26 && parseInt(qNum) <= 30) {
+            // Define correct answers for integer questions
+            const integerAnswers = {
+                '26': '19.6',
+                '27': '1.5',
+                '28': '3600',
+                '29': '20',
+                '30': '4'
+            };
+            
+            // Allow for small differences in decimal answers (tolerance of 0.1)
+            const correctValue = parseFloat(integerAnswers[qNum]);
+            const userValue = parseFloat(selectedOption);
+            
+            // Check if the user's answer is within tolerance of the correct answer
+            return !isNaN(userValue) && Math.abs(userValue - correctValue) <= 0.1;
+        }
+        
+        // For multiple choice questions, check against predefined correct answers
         return correctAnswers[qNum] === selectedOption;
     }
     

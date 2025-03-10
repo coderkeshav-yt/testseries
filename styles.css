@@ -1293,4 +1293,42 @@ body {
     .instructions-section {
         padding: 1rem;
     }
+}
+
+/* Integer input styles */
+.integer-input-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid #1a3a6d;
+}
+
+.integer-input-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.integer-answer-input {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.integer-answer-input:focus {
+    border-color: #1a3a6d;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 58, 109, 0.1);
+}
+
+.integer-note {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
 } 
