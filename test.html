@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Main Test Interface</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="nta logo.jpeg" alt="NTA Logo" class="logo-img">
+            </div>
+            <div class="logo-text">
+                <h1>NATIONAL TESTING AGENCY</h1>
+                <div class="tagline">Excellence in Assessment</div>
+            </div>
+        </div>
+        <div class="candidate-info">
+            <div class="profile-pic">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="info">
+                <p><span>Candidate Name:</span> <span id="display-name">[Your Name]</span></p>
+                <p><span>Test Name:</span> <span id="display-test">[Test Practice]</span></p>
+                <p><span>Remaining Time:</span> <span id="timer">02:59:59</span></p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="subject-nav">
+        <div class="exam-name">JEE MAIN</div>
+        <div class="subject-buttons">
+            <button class="subject-btn active">PHYSICS</button>
+            <button class="subject-btn">CHEMISTRY</button>
+            <button class="subject-btn">MATHEMATICS</button>
+        </div>
+        <div class="language-selector">
+            <label for="language">Paper Language:</label>
+            <select id="language">
+                <option value="english">English</option>
+                <option value="hindi">Hindi</option>
+            </select>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="question-container">
+            <div class="question-header">
+                <h2>Question 1:</h2>
+                <button class="view-in-btn"><i class="fas fa-arrow-down"></i></button>
+            </div>
+            <div class="question-content">
+                <p>The characteristic distance at which quantum gravitational effects are significant, the Planck length, can be determined from a suitable combination of the fundamental physical constants G, ℏ and c. Which of the following correctly gives the Planck length?</p>
+                
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="option1" name="answer" value="1">
+                        <label for="option1">(1) G ℏ<sup>2</sup> c<sup>3</sup></label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="option2" name="answer" value="2">
+                        <label for="option2">(2) G<sup>2</sup> ℏ c</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="option3" name="answer" value="3">
+                        <label for="option3">(3) √(G ℏ/c<sup>3</sup>)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="option4" name="answer" value="4">
+                        <label for="option4">(4) √(ℏ G/c<sup>2</sup>)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn save-next">SAVE & NEXT</button>
+                <button class="action-btn save-mark">SAVE & MARK FOR REVIEW</button>
+                <button class="action-btn clear">CLEAR RESPONSE</button>
+                <button class="action-btn mark-review">MARK FOR REVIEW & NEXT</button>
+            </div>
+            <div class="navigation-buttons">
+                <button class="nav-btn back-btn"><< BACK</button>
+                <button class="nav-btn next-btn">NEXT >></button>
+                <button class="submit-btn">SUBMIT</button>
+            </div>
+        </div>
+
+        <div class="question-palette">
+            <div class="question-status">
+                <div class="status-item">
+                    <div class="status-box not-visited">89</div>
+                    <div class="status-text">Not Visited</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-box not-answered">1</div>
+                    <div class="status-text">Not Answered</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-box answered">0</div>
+                    <div class="status-text">Answered</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-box marked">0</div>
+                    <div class="status-text">Marked for Review</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-box answered-marked">0</div>
+                    <div class="status-text">Answered & Marked for Review (will be considered for evaluation)</div>
+                </div>
+            </div>
+            <div class="question-grid">
+                <!-- Question numbers 1-90 -->
+                <button class="q-btn active">01</button>
+                <button class="q-btn">02</button>
+                <button class="q-btn">03</button>
+                <button class="q-btn">04</button>
+                <button class="q-btn">05</button>
+                <button class="q-btn">06</button>
+                <button class="q-btn">07</button>
+                <button class="q-btn">08</button>
+                <button class="q-btn">09</button>
+                <button class="q-btn">10</button>
+                <button class="q-btn">11</button>
+                <button class="q-btn">12</button>
+                <button class="q-btn">13</button>
+                <button class="q-btn">14</button>
+                <button class="q-btn">15</button>
+                <button class="q-btn">16</button>
+                <button class="q-btn">17</button>
+                <button class="q-btn">18</button>
+                <button class="q-btn">19</button>
+                <button class="q-btn">20</button>
+                <button class="q-btn">21</button>
+                <button class="q-btn">22</button>
+                <button class="q-btn">23</button>
+                <button class="q-btn">24</button>
+                <button class="q-btn">25</button>
+                <button class="q-btn">26</button>
+                <button class="q-btn">27</button>
+                <button class="q-btn">28</button>
+                <button class="q-btn">29</button>
+                <button class="q-btn">30</button>
+                <button class="q-btn">31</button>
+                <button class="q-btn">32</button>
+                <button class="q-btn">33</button>
+                <button class="q-btn">34</button>
+                <button class="q-btn">35</button>
+                <button class="q-btn">36</button>
+                <button class="q-btn">37</button>
+                <button class="q-btn">38</button>
+                <button class="q-btn">39</button>
+                <button class="q-btn">40</button>
+                <button class="q-btn">41</button>
+                <button class="q-btn">42</button>
+                <button class="q-btn">43</button>
+                <button class="q-btn">44</button>
+                <button class="q-btn">45</button>
+                <button class="q-btn">46</button>
+                <button class="q-btn">47</button>
+                <button class="q-btn">48</button>
+                <button class="q-btn">49</button>
+                <button class="q-btn">50</button>
+                <button class="q-btn">51</button>
+                <button class="q-btn">52</button>
+                <button class="q-btn">53</button>
+                <button class="q-btn">54</button>
+                <button class="q-btn">55</button>
+                <button class="q-btn">56</button>
+                <button class="q-btn">57</button>
+                <button class="q-btn">58</button>
+                <button class="q-btn">59</button>
+                <button class="q-btn">60</button>
+                <button class="q-btn">61</button>
+                <button class="q-btn">62</button>
+                <button class="q-btn">63</button>
+                <button class="q-btn">64</button>
+                <button class="q-btn">65</button>
+                <button class="q-btn">66</button>
+                <button class="q-btn">67</button>
+                <button class="q-btn">68</button>
+                <button class="q-btn">69</button>
+                <button class="q-btn">70</button>
+                <button class="q-btn">71</button>
+                <button class="q-btn">72</button>
+                <button class="q-btn">73</button>
+                <button class="q-btn">74</button>
+                <button class="q-btn">75</button>
+                <button class="q-btn">76</button>
+                <button class="q-btn">77</button>
+                <button class="q-btn">78</button>
+                <button class="q-btn">79</button>
+                <button class="q-btn">80</button>
+                <button class="q-btn">81</button>
+                <button class="q-btn">82</button>
+                <button class="q-btn">83</button>
+                <button class="q-btn">84</button>
+                <button class="q-btn">85</button>
+                <button class="q-btn">86</button>
+                <button class="q-btn">87</button>
+                <button class="q-btn">88</button>
+                <button class="q-btn">89</button>
+                <button class="q-btn">90</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

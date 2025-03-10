@@ -3,11 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEE Main Test Interface</title>
+    <title>JEE Main Test Registration</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional inline styles for enhanced appearance */
+        .start-page {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #1a3a6d 0%, #2c5282 100%);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo-text h1 {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        .tagline {
+            color: white;
+        }
+        
+        .registration-section {
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid #e67e22;
+        }
+        
+        .registration-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at top right, rgba(230, 126, 34, 0.1), transparent 70%);
+            z-index: 0;
+        }
+        
+        .registration-section h2 {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .registration-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #e67e22;
+            border-radius: 3px;
+        }
+        
+        .form-group input, .form-group select {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instruction-categories {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .instruction-category {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 3px solid transparent;
+        }
+        
+        .instruction-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instruction-category:nth-child(1) {
+            border-top-color: #3498db;
+        }
+        
+        .instruction-category:nth-child(2) {
+            border-top-color: #9b59b6;
+        }
+        
+        .instruction-category:nth-child(3) {
+            border-top-color: #2ecc71;
+        }
+        
+        .instruction-category h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .declaration {
+            background: linear-gradient(to right, #f0f4f8, #e8ecf1);
+            border-left: 4px solid #e67e22;
+        }
+        
+        .proceed-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+        }
+        
+        .proceed-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            transition: all 0.6s ease;
+        }
+        
+        .proceed-btn:hover::before {
+            left: 100%;
+        }
+        
+        .start-footer {
+            background: linear-gradient(90deg, #1a3a6d 0%, #2c5282 100%);
+            padding: 1.5rem 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .fallback-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .fallback-link a {
+            color: #e67e22;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px dashed #e67e22;
+            padding-bottom: 2px;
+        }
+        
+        .fallback-link a:hover {
+            color: #d35400;
+            border-bottom-style: solid;
+        }
+    </style>
 </head>
-<body>
+<body class="start-page">
     <header class="header">
         <div class="logo-container">
             <div class="logo">
@@ -18,194 +177,115 @@
                 <div class="tagline">Excellence in Assessment</div>
             </div>
         </div>
-        <div class="candidate-info">
-            <div class="profile-pic">
-                <i class="fas fa-user-circle"></i>
-            </div>
-            <div class="info">
-                <p><span>Candidate Name:</span> <span id="display-name">[Your Name]</span></p>
-                <p><span>Test Name:</span> <span id="display-test">[Test Practice]</span></p>
-                <p><span>Remaining Time:</span> <span id="timer">02:59:59</span></p>
-            </div>
-        </div>
     </header>
 
-    <nav class="subject-nav">
-        <div class="exam-name">JEE MAIN</div>
-        <div class="subject-buttons">
-            <button class="subject-btn active">PHYSICS</button>
-            <button class="subject-btn">CHEMISTRY</button>
-            <button class="subject-btn">MATHEMATICS</button>
-        </div>
-        <div class="language-selector">
-            <label for="language">Paper Language:</label>
-            <select id="language">
-                <option value="english">English</option>
-                <option value="hindi">Hindi</option>
-            </select>
-        </div>
-    </nav>
-
-    <div class="main-container">
-        <div class="question-container">
-            <div class="question-header">
-                <h2>Question 1:</h2>
-                <button class="view-in-btn"><i class="fas fa-arrow-down"></i></button>
-            </div>
-            <div class="question-content">
-                <p>The characteristic distance at which quantum gravitational effects are significant, the Planck length, can be determined from a suitable combination of the fundamental physical constants G, ℏ and c. Which of the following correctly gives the Planck length?</p>
+    <main class="start-container">
+        <div class="registration-section">
+            <h2>JEE Main Test Registration</h2>
+            <form class="registration-form" id="registration-form" onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Full Name:</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                    <input type="email" id="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="test-name"><i class="fas fa-file-alt"></i> Test Name:</label>
+                    <select id="test-name" required>
+                        <option value="" disabled selected>Select a test</option>
+                        <option value="JEE Main Practice Test 1">JEE Main Practice Test 1</option>
+                        <option value="JEE Main Practice Test 2">JEE Main Practice Test 2</option>
+                        <option value="JEE Main Practice Test 3">JEE Main Practice Test 3</option>
+                    </select>
+                </div>
                 
-                <div class="options">
-                    <div class="option">
-                        <input type="radio" id="option1" name="answer" value="1">
-                        <label for="option1">(1) G ℏ<sup>2</sup> c<sup>3</sup></label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" id="option2" name="answer" value="2">
-                        <label for="option2">(2) G<sup>2</sup> ℏ c</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" id="option3" name="answer" value="3">
-                        <label for="option3">(3) √(G ℏ/c<sup>3</sup>)</label>
-                    </div>
-                    <div class="option">
-                        <input type="radio" id="option4" name="answer" value="4">
-                        <label for="option4">(4) √(ℏ G/c<sup>2</sup>)</label>
+                <div class="instructions-section">
+                    <h3><i class="fas fa-info-circle"></i> Important Instructions</h3>
+                    <div class="instruction-categories">
+                        <div class="instruction-category">
+                            <h4><i class="fas fa-clock"></i> General Instructions</h4>
+                            <ul>
+                                <li>Total duration of examination is 180 minutes</li>
+                                <li>The clock will be set at the server</li>
+                                <li>The countdown timer will display the remaining time</li>
+                                <li>Test will automatically submit when time expires</li>
+                            </ul>
+                        </div>
+                        <div class="instruction-category">
+                            <h4><i class="fas fa-edit"></i> Question Paper Pattern</h4>
+                            <ul>
+                                <li>Total of 90 questions (30 each from Physics, Chemistry, and Mathematics)</li>
+                                <li>All questions are compulsory</li>
+                                <li>Each question has 4 options, only one is correct</li>
+                            </ul>
+                        </div>
+                        <div class="instruction-category">
+                            <h4><i class="fas fa-calculator"></i> Marking Scheme</h4>
+                            <ul>
+                                <li>Correct Answer: +4 marks</li>
+                                <li>Incorrect Answer: -1 mark</li>
+                                <li>Unanswered: 0 marks</li>
+                                <li>Maximum marks: 360</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="action-buttons">
-                <button class="action-btn save-next">SAVE & NEXT</button>
-                <button class="action-btn save-mark">SAVE & MARK FOR REVIEW</button>
-                <button class="action-btn clear">CLEAR RESPONSE</button>
-                <button class="action-btn mark-review">MARK FOR REVIEW & NEXT</button>
-            </div>
-            <div class="navigation-buttons">
-                <button class="nav-btn back-btn"><< BACK</button>
-                <button class="nav-btn next-btn">NEXT >></button>
-                <button class="submit-btn">SUBMIT</button>
-            </div>
+                
+                <div class="declaration">
+                    <input type="checkbox" id="declaration" required>
+                    <label for="declaration"><i class="fas fa-check-circle"></i> I have read and understood all the instructions and agree to follow them</label>
+                </div>
+                
+                <button type="submit" class="proceed-btn"><i class="fas fa-arrow-right"></i> Proceed to Test</button>
+                <p class="fallback-link">
+                    If the button doesn't work, <a href="test.html">click here</a> to go directly to the test.
+                </p>
+            </form>
         </div>
-
-        <div class="question-palette">
-            <div class="question-status">
-                <div class="status-item">
-                    <div class="status-box not-visited">89</div>
-                    <div class="status-text">Not Visited</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-box not-answered">1</div>
-                    <div class="status-text">Not Answered</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-box answered">0</div>
-                    <div class="status-text">Answered</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-box marked">0</div>
-                    <div class="status-text">Marked for Review</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-box answered-marked">0</div>
-                    <div class="status-text">Answered & Marked for Review (will be considered for evaluation)</div>
-                </div>
-            </div>
-            <div class="question-grid">
-                <!-- Question numbers 1-90 -->
-                <button class="q-btn active">01</button>
-                <button class="q-btn">02</button>
-                <button class="q-btn">03</button>
-                <button class="q-btn">04</button>
-                <button class="q-btn">05</button>
-                <button class="q-btn">06</button>
-                <button class="q-btn">07</button>
-                <button class="q-btn">08</button>
-                <button class="q-btn">09</button>
-                <button class="q-btn">10</button>
-                <button class="q-btn">11</button>
-                <button class="q-btn">12</button>
-                <button class="q-btn">13</button>
-                <button class="q-btn">14</button>
-                <button class="q-btn">15</button>
-                <button class="q-btn">16</button>
-                <button class="q-btn">17</button>
-                <button class="q-btn">18</button>
-                <button class="q-btn">19</button>
-                <button class="q-btn">20</button>
-                <button class="q-btn">21</button>
-                <button class="q-btn">22</button>
-                <button class="q-btn">23</button>
-                <button class="q-btn">24</button>
-                <button class="q-btn">25</button>
-                <button class="q-btn">26</button>
-                <button class="q-btn">27</button>
-                <button class="q-btn">28</button>
-                <button class="q-btn">29</button>
-                <button class="q-btn">30</button>
-                <button class="q-btn">31</button>
-                <button class="q-btn">32</button>
-                <button class="q-btn">33</button>
-                <button class="q-btn">34</button>
-                <button class="q-btn">35</button>
-                <button class="q-btn">36</button>
-                <button class="q-btn">37</button>
-                <button class="q-btn">38</button>
-                <button class="q-btn">39</button>
-                <button class="q-btn">40</button>
-                <button class="q-btn">41</button>
-                <button class="q-btn">42</button>
-                <button class="q-btn">43</button>
-                <button class="q-btn">44</button>
-                <button class="q-btn">45</button>
-                <button class="q-btn">46</button>
-                <button class="q-btn">47</button>
-                <button class="q-btn">48</button>
-                <button class="q-btn">49</button>
-                <button class="q-btn">50</button>
-                <button class="q-btn">51</button>
-                <button class="q-btn">52</button>
-                <button class="q-btn">53</button>
-                <button class="q-btn">54</button>
-                <button class="q-btn">55</button>
-                <button class="q-btn">56</button>
-                <button class="q-btn">57</button>
-                <button class="q-btn">58</button>
-                <button class="q-btn">59</button>
-                <button class="q-btn">60</button>
-                <button class="q-btn">61</button>
-                <button class="q-btn">62</button>
-                <button class="q-btn">63</button>
-                <button class="q-btn">64</button>
-                <button class="q-btn">65</button>
-                <button class="q-btn">66</button>
-                <button class="q-btn">67</button>
-                <button class="q-btn">68</button>
-                <button class="q-btn">69</button>
-                <button class="q-btn">70</button>
-                <button class="q-btn">71</button>
-                <button class="q-btn">72</button>
-                <button class="q-btn">73</button>
-                <button class="q-btn">74</button>
-                <button class="q-btn">75</button>
-                <button class="q-btn">76</button>
-                <button class="q-btn">77</button>
-                <button class="q-btn">78</button>
-                <button class="q-btn">79</button>
-                <button class="q-btn">80</button>
-                <button class="q-btn">81</button>
-                <button class="q-btn">82</button>
-                <button class="q-btn">83</button>
-                <button class="q-btn">84</button>
-                <button class="q-btn">85</button>
-                <button class="q-btn">86</button>
-                <button class="q-btn">87</button>
-                <button class="q-btn">88</button>
-                <button class="q-btn">89</button>
-                <button class="q-btn">90</button>
-            </div>
-        </div>
-    </div>
-
+    </main>
+    
+    <footer class="start-footer">
+        <p>&copy; 2025 National Testing Agency. All rights reserved.</p>
+    </footer>
+    
     <script src="script.js"></script>
+    <script>
+        // Inline script to ensure form submission works
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const testName = document.getElementById('test-name').value;
+            const declaration = document.getElementById('declaration').checked;
+            
+            // Validate form
+            if (!name || !email || !testName) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (!declaration) {
+                alert('Please accept the declaration to proceed');
+                return;
+            }
+            
+            // Store user details in localStorage
+            localStorage.setItem('userName', name);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('testName', testName);
+            
+            // Show loading message
+            this.innerHTML = '<div style="text-align: center; padding: 2rem;"><h3>Loading your test...</h3><p>Please wait while we prepare your test environment.</p><div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #e67e22; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div></div><style>@keyframes spin {0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}</style>';
+            
+            // Redirect to test page after a short delay
+            setTimeout(function() {
+                window.location.href = 'test.html';
+            }, 1500);
+        });
+    </script>
 </body>
 </html> 
