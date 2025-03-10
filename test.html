@@ -207,5 +207,24 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Ensure user details are displayed when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get user details from localStorage
+            const userName = localStorage.getItem('userName');
+            const testName = localStorage.getItem('testName');
+            
+            // Update display elements
+            if (userName && document.getElementById('display-name')) {
+                document.getElementById('display-name').textContent = userName;
+            }
+            
+            if (testName && document.getElementById('display-test')) {
+                document.getElementById('display-test').textContent = testName;
+            }
+            
+            console.log("User details loaded:", { userName, testName });
+        });
+    </script>
 </body>
 </html> 

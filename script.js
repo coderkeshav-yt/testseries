@@ -814,7 +814,7 @@ function handleRegistration(event) {
     
     // Redirect to test page after a short delay (simulates loading)
     setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = 'test.html';
     }, 1500);
 }
 
@@ -838,8 +838,9 @@ function displayUserDetails() {
 
 // Call displayUserDetails when the document is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if we're on the test page
-    if (window.location.pathname.includes('index.html') || 
+    // Check if we're on the test page or index page
+    if (window.location.pathname.includes('test.html') || 
+        window.location.pathname.includes('index.html') || 
         window.location.pathname.endsWith('/') || 
         window.location.pathname.endsWith('/TEST%20Sereis/')) {
         displayUserDetails();

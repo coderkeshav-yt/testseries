@@ -279,11 +279,18 @@
             localStorage.setItem('testName', testName);
             
             // Show loading message
-            this.innerHTML = '<div style="text-align: center; padding: 2rem;"><h3>Loading your test...</h3><p>Please wait while we prepare your test environment.</p><div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #e67e22; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div></div><style>@keyframes spin {0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}</style>';
+            this.innerHTML = '<div style="text-align: center; padding: 2rem;"><h3>Loading your test...</h3><p>Please wait while we prepare your test environment.</p><div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #e67e22; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div><p style="margin-top: 20px;"><a href="test.html" style="display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: bold;">Click here if not redirected automatically</a></p></div><style>@keyframes spin {0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}</style>';
             
             // Redirect to test page after a short delay
             setTimeout(function() {
-                window.location.href = 'test.html';
+                try {
+                    console.log("Attempting to redirect to test.html");
+                    window.location.replace('test.html');
+                } catch (e) {
+                    console.error("Error redirecting:", e);
+                    // Fallback method
+                    window.open('test.html', '_self');
+                }
             }, 1500);
         });
     </script>
